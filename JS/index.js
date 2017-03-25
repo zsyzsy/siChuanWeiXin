@@ -5,11 +5,16 @@ function swpe(){
 	//Hammer js的垂直方向滑动默认是关闭的，需要手动打开
 	var container=document.getElementById("container");
 	var hammer = new Hammer(container);
-	hammer.get("swipe").set({direction:Hammer.DIRECTION_VERTICAL});//获取垂直滑动
+	hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });//获取垂直滑动
 	//
 	var animateArr = ["animation","OAnimation","MsAnimation","WebkitAnimation"]; //定义兼容性
 	/****上滑****/
+
+	document.addEventListener('touchmove', function (event) {
+		event.preventDefault();
+	}, false);
 	hammer.on("swipeup",function(){
+		console.log(11111);
 		if(pageNum==5) return;
 		/*$("#page"+pageNum).animate({top:'-1700px'},500);*/
 		var dom2 = document.getElementById("page"+pageNum);
@@ -47,6 +52,7 @@ function swpe(){
 		}
 		pageNum ++;
 	}).on("swipedown",function(){/*下滑**/
+		console.log(2222);
 		if(pageNum<=1) return;
 
 		//$("#page1Text").css("animation","scalingTextIamge 3s 3");
